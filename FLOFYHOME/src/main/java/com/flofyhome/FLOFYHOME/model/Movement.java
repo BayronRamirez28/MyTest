@@ -10,11 +10,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "movimientos")
+@Getter
+@Setter
 public class Movement implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -31,10 +36,10 @@ public class Movement implements Serializable{
 	
 	@ManyToOne()
 	@JoinColumn(name = "id_inventario", referencedColumnName="id")
-	private Inventory id_inventario;
+	private Inventory inventory;
 	
 	@ManyToOne()
 	@JoinColumn(name = "producto", referencedColumnName="id")
-	private Product producto;
+	private Product product;
 
 }

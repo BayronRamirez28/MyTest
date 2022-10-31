@@ -11,8 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Table(name = "categorias")
+@Getter
+@Setter
 public class Category implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -24,7 +29,44 @@ public class Category implements Serializable{
 	@Column(name="nombre", length = 50)
 	private String name;
 	
-	@OneToMany(mappedBy = "categoria")
-	private List<Product> categoria;
+	@OneToMany(mappedBy = "category")
+	private List<Product> category_product;
+
+	public Category() {
+		super();
+	}
+
+	public Category(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	@Override
+	public String toString() {
+		return "Category [id=" + id + ", name=" + name + "]";
+	}
+	
+	
 	
 }

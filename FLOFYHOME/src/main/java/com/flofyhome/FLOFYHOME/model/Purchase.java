@@ -1,6 +1,7 @@
 package com.flofyhome.FLOFYHOME.model;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,11 +12,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.Date;
+
+import lombok.Getter;
+import lombok.Setter;
+
+
 import java.util.List;
 
 @Entity
 @Table(name = "compras")
+@Getter
+@Setter
 public class Purchase  implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -29,14 +36,14 @@ public class Purchase  implements Serializable{
 	
 	@ManyToOne()
 	@JoinColumn(name = "proveedor", referencedColumnName = "id")
-	private Supplier proveedor;
+	private Supplier supplier;
 	
 	@ManyToOne()
 	@JoinColumn(name = "jefe_inventario", referencedColumnName = "id")
-	private User jefe_inventario;
+	private User chief_inventory;
 	
-	@OneToMany(mappedBy = "id_compra")
-	private List<PurchaseDetail> id_compra;
+	@OneToMany(mappedBy = "purchase")
+	private List<PurchaseDetail> purchase;
 	
 
 }

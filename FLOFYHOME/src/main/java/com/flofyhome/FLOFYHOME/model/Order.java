@@ -34,16 +34,12 @@ public class Order implements Serializable{
 	
 	@ManyToOne()
 	@JoinColumn(name = "cliente", referencedColumnName = "id")
-	private User cliente;
-	
-	@ManyToOne()
-	@JoinColumn(name = "direccion", referencedColumnName = "id")
-	private Address direccion;
+	private User client;
 
-	@OneToMany(mappedBy = "id_pedido")
-	private List<OrderDetail> detalle_pedido;
+	@OneToMany(mappedBy = "order")
+	private List<OrderDetail> detail_order;
 
-	@OneToOne(mappedBy = "pedido")
-	private Sale venta;
+	@OneToOne(mappedBy = "order")
+	private Sale sale;
 	
 }

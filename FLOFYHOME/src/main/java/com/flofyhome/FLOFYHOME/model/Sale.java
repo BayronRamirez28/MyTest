@@ -15,8 +15,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Table(name = "ventas")
+@Getter
+@Setter
 public class Sale implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -36,16 +41,12 @@ public class Sale implements Serializable{
 	
 	@ManyToOne()
 	@JoinColumn(name = "vendedor", referencedColumnName = "id")
-	private User vendedor;
+	private User salesperson;
 	
 	@OneToOne()
 	@JoinColumn(name = "pedido", referencedColumnName ="id")
-	private Order pedido;
+	private Order order;
 	
-	@ManyToOne()
-	@JoinColumn(name = "direccion", referencedColumnName = "id")
-	private Address direccion;
-	
-	@OneToMany(mappedBy = "id_venta")
-	private List<SaleDetail> id_venta;
+	@OneToMany(mappedBy = "sale")
+	private List<SaleDetail> sale;
 }

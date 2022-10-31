@@ -11,8 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Table(name = "permisos")
+@Getter
+@Setter
 public class Permission implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -24,9 +29,9 @@ public class Permission implements Serializable{
 	@Column(name="nombre", length = 50)
 	private String name;
 	
-	@Column(name="asignació", length = 50)
+	@Column(name="asignacion", length = 100)
 	private String allocation;
 
-	@OneToMany(mappedBy = "permisos")
-	private List<User> permisos;
+	@OneToMany(mappedBy = "permission")
+	private List<User> permission;
 }

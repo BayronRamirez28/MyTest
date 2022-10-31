@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Crear producto</title>
+<!-- CSS only -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<h1>Crear producto</h1>
+
+		<form th:action="@{/productos/save}" th:object="${producto}"
+			method="post">
+			<div class="mb-3">
+				<label for="formGroupExampleInput" class="form-label">Nombre
+					Producto </label> <input type="text" class="form-control"
+					id="formGroupExampleInput" name="name"
+					placeholder="Escriba el nombre del producto">
+			</div>
+			<div class="mb-3">
+				<label for="formGroupExampleInput2" class="form-label">Precio
+					Venta </label> <input type="number" class="form-control"
+					id="formGroupExampleInput2" name="sale_price"
+					placeholder="Escriba el precio de venta del producto">
+			</div>
+			<div class="mb-3">
+				<label for="formGroupExampleInput2" class="form-label">Estado </label>
+			<select class="form-select" aria-label="Default select example"
+				th:field="*{estate}">
+				<option th:value="'Disponible'" th:text="Disponible"></option>
+				<option th:value="'No Disponible'" th:text="'No Disponible'"></option>
+			</select>
+			</div>
+			<div class="mb-3">
+				<label for="formGroupExampleInput2" class="form-label">Detalle
+				</label> <input type="text" class="form-control" id="formGroupExampleInput2"
+					name="detail" placeholder="Escriba el detalle del producto">
+			</div>
+			<div class="mb-3">
+				<label for="formGroupExampleInput2" class="form-label">Cantidad
+					Minima </label> <input type="number" class="form-control"
+					id="formGroupExampleInput2" name="minimun_quantity"
+					placeholder="Escriba el detalle del producto">
+			</div>
+			<div class="mb-3">
+				<label for="formGroupExampleInput2" class="form-label">Imagen
+				</label> <input type="file" class="form-control" id="formGroupExampleInput2"
+					name="image"
+					placeholder="Escriba el correo electronico del proveedor">
+			</div>
+			<div class="form-group row">
+				<lable class="col-form-label col-sm-4">Proveedor</lable>
+				<div class="col-sm-8">
+					<select th:field="*{supplier}" class="form-control" required>
+						<th:block th:each="supplier : ${listaproveedores}">
+							<option th:text="${supplier.name}" th:value="${supplier.id}">
+					</select>
+				</div>
+			</div>
+			<div class="form-group row">
+				<lable class="col-form-label col-sm-4">Categoria</lable>
+				<div class="col-sm-8">
+					<select th:field="*{category}" class="form-control" required>
+						<th:block th:each="category : ${listacategorias}">
+							<option th:text="${category.name}" th:value="${category.id}">
+					</select>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-success">Guardar</button>
+		</form>
+
+
+	</div>
+</html>

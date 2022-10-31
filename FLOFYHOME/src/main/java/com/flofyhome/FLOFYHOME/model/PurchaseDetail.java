@@ -11,8 +11,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Table(name = "detalle_compra")
+@Getter
+@Setter
 public class PurchaseDetail implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -29,9 +34,9 @@ public class PurchaseDetail implements Serializable{
 	
 	@ManyToOne()
 	@JoinColumn(name = "id_compra", referencedColumnName = "id")
-	private Purchase id_compra;
+	private Purchase purchase;
 	
 	@ManyToOne()
 	@JoinColumn(name = "producto", referencedColumnName = "id")
-	private Product producto;
+	private Product product;
 }

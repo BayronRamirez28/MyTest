@@ -16,8 +16,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Table(name = "usuarios")
+@Getter
+@Setter
 public class User  implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -36,24 +41,20 @@ public class User  implements Serializable{
 	private String email;
 	
 	@ManyToOne()
-	@JoinColumn(name = "rol", referencedColumnName = "id")
-	private Role roles;
-	
-	@ManyToOne()
 	@JoinColumn(name = "permisos", referencedColumnName = "id")
-	private Permission permisos;
+	private Permission permission;
 	
-	@OneToMany(mappedBy = "jefe_inventario")
-	private List<Purchase> jefe_inventario;
+	@OneToMany(mappedBy = "chief_inventory")
+	private List<Purchase> chief_inventory;
 	
-	@OneToMany(mappedBy = "usuario")
-	private List<Address> usuario;
+	@OneToMany(mappedBy = "user")
+	private List<Address> user;
 	
-	@OneToMany(mappedBy = "cliente")
-	private List<Order> cliente;
+	@OneToMany(mappedBy = "client")
+	private List<Order> client;
 	
-	@OneToMany(mappedBy = "vendedor")
-	private List<Sale> vendedor;
+	@OneToMany(mappedBy = "salesperson")
+	private List<Sale> salesperson;
 	
 	@ManyToMany
 	
@@ -64,5 +65,6 @@ public class User  implements Serializable{
 	
 	private List<Person> persons = new ArrayList<>();
 	
-	
+	@ManyToMany(mappedBy = "users")
+	private List<Role> rols = new ArrayList<>();
 }
