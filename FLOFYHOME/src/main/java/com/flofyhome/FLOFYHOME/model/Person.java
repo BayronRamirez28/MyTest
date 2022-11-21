@@ -6,8 +6,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -21,8 +19,8 @@ public class Person implements Serializable {
 
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long dni;
+	
 	@Column(name = "nombres", length = 100)
 	private String name;
 
@@ -31,9 +29,6 @@ public class Person implements Serializable {
 
 	@Column(name = "tipo_documento", length = 50)
 	private String document_type;
-
-	@Column(name = "dni", length = 50)
-	private String dni;
 
 	@Column(name = "celular")
 	private long cellphone;
@@ -44,12 +39,12 @@ public class Person implements Serializable {
 	@ManyToMany(mappedBy = "persons")
 	private List<User> users = new ArrayList<>();
 
-	public int getId() {
-		return id;
+	public long getDni() {
+		return dni;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setDni(long dni) {
+		this.dni = dni;
 	}
 
 	public String getName() {
@@ -74,14 +69,6 @@ public class Person implements Serializable {
 
 	public void setDocument_type(String document_type) {
 		this.document_type = document_type;
-	}
-
-	public String getDni() {
-		return dni;
-	}
-
-	public void setDni(String dni) {
-		this.dni = dni;
 	}
 
 	public long getCellphone() {
@@ -111,6 +98,11 @@ public class Person implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	
+	
+
+	
 
 	
 

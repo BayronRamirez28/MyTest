@@ -1,13 +1,13 @@
 package com.flofyhome.FLOFYHOME.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.flofyhome.FLOFYHOME.implement.CategoryDao;
@@ -17,34 +17,27 @@ import com.flofyhome.FLOFYHOME.model.Category;
 @RequestMapping("/categorias")
 public class CategoryController {
 	
-	private final Logger logg = LoggerFactory.getLogger(Category.class);
-	
 	@Autowired
 	private CategoryDao categoryDao;
 	
-	@GetMapping("")
-	public String indexCategory(Model model) {
-		model.addAttribute("categorias", categoryDao.findAll());
-		return "/category/indexcategory";
+	@GetMapping("/all")
+	public ResponseEntity<?> findAll(){
+		return ResponseEntity.ok(categoryDao.findAll());
 	}
 	
-	@GetMapping("/create")
-	public String create() {
-		return "/category/createcategory";
+	@PostMapping("/create")
+	public ResponseEntity<Category> create(@RequestBody Category category){
+		return ResponseEntity.ok(categoryDao.create(category));
 	}
 	
-	@PostMapping("/save")
-	public String save(Category category) {
-		logg.info("información de la categoria, {}", category);
-		categoryDao.create(category);
-		return "redirect:/categorias";
+	@PutMapping("/update")
+	public ResponseEntity<Category> update(@RequestBody Category category){
+		return ResponseEntity.ok(categoryDao.update(category));
 	}
 	
-	@GetMapping("/edit/{id}")
-	public String edit(@PathVariable Integer id, Model model) {
-		Category ca = categoryDao.findId(id);
-		logg.info("Objecto llamado {}", ca);
-		model.addAttribute("categoria", ca);
-		return "/category/updatecategory";
+	@GetMapping("/{id}")
+	public Category findId(@PathVariable("id") int id) {
+		return categoryDao.findId(id);
 	}
+		
 }

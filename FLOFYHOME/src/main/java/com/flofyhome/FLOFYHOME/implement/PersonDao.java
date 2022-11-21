@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.flofyhome.FLOFYHOME.facade.IPerson;
 import com.flofyhome.FLOFYHOME.model.Person;
 import com.flofyhome.FLOFYHOME.repository.PersonRepository;
+import com.flofyhome.FLOFYHOME.repository.UserRepository;
 
 
 @Service
@@ -15,6 +16,9 @@ public class PersonDao implements IPerson {
 
 	@Autowired
 	private PersonRepository personRepository;
+	
+	@Autowired 
+	private UserRepository userRepository;
 
 	@Override
 	public List<Person> findAll() {
@@ -22,8 +26,8 @@ public class PersonDao implements IPerson {
 	}
 
 	@Override
-	public void create(Person person) {
-		this.personRepository.save(person);
+	public Person create(Person person) {
+		return this.personRepository.save(person);
 		
 	}
 
@@ -35,7 +39,7 @@ public class PersonDao implements IPerson {
 
 	@Override
 	public Person findId(int id) {
-		return null;
+		return this.personRepository.getOne(id);
 	}
 	
 	

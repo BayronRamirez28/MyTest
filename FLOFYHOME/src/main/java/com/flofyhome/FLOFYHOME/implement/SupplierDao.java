@@ -1,5 +1,6 @@
 package com.flofyhome.FLOFYHOME.implement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,23 +18,23 @@ public class SupplierDao implements ISupplier{
 
 	@Override
 	public List<Supplier> findAll() {
-		return this.supplierRepository.findAll();
+		return new ArrayList<>(supplierRepository.findAll());
 	}
 
 	@Override
-	public void create(Supplier supplier) {
-		this.supplierRepository.save(supplier);
+	public Supplier create(Supplier supplier) {
+		return this.supplierRepository.save(supplier);
 		
 	}
 
 	@Override
-	public void update(Supplier supplier) {
-		this.supplierRepository.save(supplier);
+	public Supplier update(Supplier supplier) {
+		return this.supplierRepository.save(supplier);
 		
 	}
 
 	@Override
 	public Supplier findId(int id) {
-		return this.supplierRepository.getOne(id);
+		return this.supplierRepository.findById(id).get();
 	}
 }

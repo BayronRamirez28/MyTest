@@ -1,0 +1,44 @@
+<mat-card>
+    <h1>Agregar nuevo producto</h1>
+    <mat-card-content>
+        <div class="bootstrap-wrapper">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <form (ngSubmit) = "crearProducto()">
+                        <mat-form-field class="w100" appearance="outline">
+                            <mat-label>Nombre</mat-label>
+                            <input  required type="text" autofocus name="name" [(ngModel)]="producto.name" matInput placeholder="Digite el nombre del producto">
+                        </mat-form-field>
+                        <mat-form-field class="w100" appearance="outline">
+                            <mat-label>Descripción</mat-label>
+                            <textarea required name="detail" [(ngModel)]="producto.detail" matInput rows="2"></textarea>
+                        </mat-form-field>
+                        <mat-form-field class="w100" appearance="outline">
+                            <mat-label>Precio venta</mat-label>
+                            <input required type="number" name="sale_price" [(ngModel)]="producto.sale_price" matInput placeholder="Digite el precio de venta del producto">
+                        </mat-form-field>
+                        <mat-form-field class="w100" appearance="outline">
+                            <mat-label>Cantidad minima</mat-label>
+                            <input required [(ngModel)] = "producto.minimun_quantity" name="minimun_quantity" matInput type="number" placeholder="Digite la cantidad minima del producto">
+                        </mat-form-field>
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Categoria</mat-label>
+                            <mat-select [(ngModel)] = "producto.category" name="categoria">
+                                <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.name }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Proveedor</mat-label>
+                            <mat-select [(ngModel)] = "producto.supplier" name="proveedor">
+                                <mat-option *ngFor="let proveedor of proveedores" [value]="proveedor.id">{{ proveedor.name }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div clas="container text-center mt10">
+                            <button type="submit" mat-raised-button color="primary" (click)="crearProducto()">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

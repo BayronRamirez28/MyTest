@@ -7,5 +7,7 @@ import com.flofyhome.FLOFYHOME.model.Person;
 
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Integer>{
+	
+	public Person findByDni(Integer dni);
 
 }

@@ -1,0 +1,42 @@
+<mat-card style="margin-left: 10px;">
+    <div class="text-center">
+        <h1>Listado de productos</h1>
+    </div>
+    <mat-card-content>
+        <div class="bootstrap-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <table class="table text-center">
+                            <thead>
+                                <th >Id</th>
+                                <th>Nombre</th>
+                                <th>Detalle</th>
+                                <th>Cantidad</th>
+                                <th>Precio venta</th>
+                                <th>Estado</th>
+                                <th>Categoria</th>
+                                <th>Proveedor</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let producto of productos">
+                                    <td>{{ producto.id }}</td>
+                                    <td>{{ producto.name }}</td>
+                                    <td>{{ producto.detail }}</td>
+                                    <td>{{ producto.quantity }}</td>
+                                    <td>{{ producto.sale_price }}</td>
+                                    <td>{{ producto.estate }}</td>
+                                    <td>{{ producto.category.name}}</td>
+                                    <td>{{ producto.supplier.name}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <mat-card-actions class="text-center">
+            <button routerLink="" mat-raised-button color="primary">Agregar producto</button>
+        </mat-card-actions>
+    </mat-card-content>
+</mat-card>

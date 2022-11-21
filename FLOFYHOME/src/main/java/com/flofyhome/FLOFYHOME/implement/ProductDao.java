@@ -1,8 +1,11 @@
 package com.flofyhome.FLOFYHOME.implement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.flofyhome.FLOFYHOME.facade.IProduct;
@@ -16,29 +19,23 @@ public class ProductDao implements IProduct {
 	private ProductRepository productRepository;
 
 	@Override
-	public List<Product> findAll(String keyWord) {
-		if(keyWord != null) {
-			return this.productRepository.findAll(keyWord);
-			
-		}
-		return this.productRepository.findAll();
+	public List<Product> findAll() {
+		return new ArrayList<>(productRepository.findAll());
 	}
 
 	@Override
-	public void create(Product product) {
-		this.productRepository.save(product);
-
+	public Product create(Product product) {
+		return productRepository.save(product);
 	}
 
 	@Override
-	public void update(Product product) {
-		this.productRepository.save(product);
-
+	public Product update(Product product) {
+		return productRepository.save(product);
 	}
 
 	@Override
 	public Product findId(int id) {
-		return this.productRepository.getOne(id);
+		return productRepository.findById(id).get();
 	}
 
 

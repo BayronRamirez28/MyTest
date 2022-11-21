@@ -1,5 +1,6 @@
 package com.flofyhome.FLOFYHOME.implement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,23 +18,23 @@ public class CategoryDao implements ICategory{
 
 	@Override
 	public List<Category>findAll(){
-		return this.categoryRepository.findAll();
+		return new ArrayList<>(categoryRepository.findAll());
 	}
 
 	@Override
-	public void create(Category category) {
-		this.categoryRepository.save(category);
+	public Category create(Category category) {
+		return this.categoryRepository.save(category);
 		
 	}
 
 	@Override
-	public void update(Category category) {
-		this.categoryRepository.save(category);
+	public Category update(Category category) {
+		return this.categoryRepository.save(category);
 		
 	}
 
 	@Override
 	public Category findId(int id) {
-		return this.categoryRepository.getOne(id);
+		return this.categoryRepository.findById(id).get();
 	}
 }

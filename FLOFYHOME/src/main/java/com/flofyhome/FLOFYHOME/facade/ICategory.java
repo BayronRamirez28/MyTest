@@ -8,9 +8,9 @@ public interface ICategory {
 
 	public List<Category> findAll();
 	
-	public void create (Category category);
+	public Category create (Category category);
 	
-	public void update (Category category);
+	public Category update (Category category);
 	
 	public Category findId(int id);
 }

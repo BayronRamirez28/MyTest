@@ -2,6 +2,7 @@ package com.flofyhome.FLOFYHOME.model;
 
 
 import java.io.Serializable;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +15,7 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
+
 import java.util.List;
 
 

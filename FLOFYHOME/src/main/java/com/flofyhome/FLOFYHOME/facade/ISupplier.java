@@ -8,9 +8,9 @@ public interface ISupplier {
 
 	public List<Supplier> findAll();
 	
-	public void create(Supplier supplier);
+	public Supplier create(Supplier supplier);
 	
-	public void update(Supplier supplier);
+	public Supplier update(Supplier supplier);
 	
 	public Supplier findId(int id);
 }

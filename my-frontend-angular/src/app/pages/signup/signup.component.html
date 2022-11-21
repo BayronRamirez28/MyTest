@@ -1,0 +1,47 @@
+<div class="bootstrap-wrapper">
+    <div class="container">
+        <div class="row" style="margin-top : 20px;">
+            <div class="container text-center">
+                <div class="container text-center">
+                    <img src="../../../assets/add-friend.png" width="100">
+                </div>
+
+                <h1 class="text=center">Registrate aqui</h1>
+                <form (ngSubmit) = "formSubmit()">
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Nombres</mat-label>
+                        <input required [(ngModel)] = "person.name" name="name" matInput placeholder="Ingresa tus nombres">
+                    </mat-form-field>
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Apellidos</mat-label>
+                        <input required [(ngModel)] = "person.lastname" name="lastname" matInput placeholder="Ingresa tus apellidos">
+                    </mat-form-field>
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Tipo de documento</mat-label>
+                        <mat-select [(ngModel)] = "person.document_type" name="document_type">
+                            <mat-option value="CC">Cédula de ciudadania</mat-option>
+                            <mat-option value="Pasaporte">Pasaporte</mat-option>
+                            <mat-option value="Cedula extranjeria">Cédula extranjería</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Número de documento</mat-label>
+                        <input required [(ngModel)] = "person.dni" name="dni" matInput placeholder="Ingresa su número de documento">
+                    </mat-form-field>
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Célular</mat-label>
+                        <input required [(ngModel)] = "person.cellphone" name="cellphone" matInput type="tel" placeholder="Ingresa su número de célular">
+                    </mat-form-field>
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Teléfono</mat-label>
+                        <input required [(ngModel)] = "person.telephone" name="telephone" matInput type="tel" placeholder="Ingresa su número de teléfono">
+                    </mat-form-field>
+                    <div class="container text-center">
+                        <button mat-raised-button color="primary">Registrar</button>
+                        <button type="reset"  mat-raised-button color="accent" style="margin-left: 20px;">Limpiar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
