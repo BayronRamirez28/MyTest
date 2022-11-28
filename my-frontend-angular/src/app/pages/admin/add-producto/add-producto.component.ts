@@ -4,6 +4,7 @@ import { Categoria } from 'src/app/model/categoria';
 import { Proveedor } from 'src/app/model/proveedores';
 import { Producto } from 'src/app/model/producto';
 import { ProductoService } from 'src/app/services/producto.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-producto',
@@ -18,7 +19,7 @@ export class AddProductoComponent implements OnInit {
 
   proveedores: Proveedor [] = [];
 
-  constructor(private productoService:ProductoService) { }
+  constructor(private productoService:ProductoService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.productoService.listarCategorias().subscribe(
@@ -40,11 +41,28 @@ export class AddProductoComponent implements OnInit {
         Swal.fire('Error !!', 'Error al cargar los proveedores')
       }
     )
+
+    this.activatedRoute.params.subscribe(params =>{
+      let id: number = params['id'];
+      if(id){
+        this.productoService.findId(id).subscribe(
+          (data:any) => {
+            this.producto = data; 
+          }
+        );
+      }
+    })
   }
 
   crearProducto(){
     this.productoService.crearProducto(this.producto).subscribe(
       response => console.log("Exito!")
+    )
+  }
+
+  actualizarProducto(){
+    this.productoService.actualizarProduct(this.producto).subscribe(
+      response => console.log("Actualizado!")
     )
   }
 

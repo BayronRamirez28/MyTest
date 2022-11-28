@@ -33,14 +33,21 @@ public class Category implements Serializable{
 	private List<Product> category_product;
 
 	public Category() {
-		super();
 	}
+
+	
+
+
 
 	public Category(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
+
+
+
+
 
 	public int getId() {
 		return id;
@@ -62,10 +69,7 @@ public class Category implements Serializable{
 		return serialVersionUID;
 	}
 
-	@Override
-	public String toString() {
-		return "Category [id=" + id + ", name=" + name + "]";
-	}
+	
 	
 	
 	

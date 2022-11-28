@@ -2,7 +2,10 @@ package com.flofyhome.FLOFYHOME.controller;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -38,23 +41,23 @@ public class ProductController {
 	private CategoryDao categoryDao;
 
 	@GetMapping("/all")
-	public ResponseEntity<?> findAll(){
-		return ResponseEntity.ok(productDao.findAll());
+	public ResponseEntity<List<Product>> findAll(){
+		return new ResponseEntity<>(productDao.findAll(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/categorias")
-	public ResponseEntity<?> listarCategorias(){
-		return ResponseEntity.ok(categoryDao.findAll());
+	public ResponseEntity<List<Category>> listarCategorias(){
+		return new ResponseEntity<>(categoryDao.findAll(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/proveedores")
-	public ResponseEntity<?> listarProveedores(){
-		return ResponseEntity.ok(supplierDao.findAll());
+	public ResponseEntity<List<Supplier>> listarProveedores(){
+		return new ResponseEntity<>(supplierDao.findAll(), HttpStatus.OK);
 	}
 	
 	@PostMapping("/create")
 	public ResponseEntity<Product> create(@RequestBody Product product){
-		return ResponseEntity.ok(productDao.create(product));
+		return new ResponseEntity<>(productDao.create(product), HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/update")

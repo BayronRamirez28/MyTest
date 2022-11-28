@@ -12,7 +12,7 @@ export class ViewProductosComponent implements OnInit {
 
   productos:Producto[]=[];
 
-
+  columndefs : any[] = ['id','name', 'quantity', 'sale_price', 'estate', 'category', 'supplier', 'borrar', 'editar'];
 
   constructor(private productoService:ProductoService) { }
 

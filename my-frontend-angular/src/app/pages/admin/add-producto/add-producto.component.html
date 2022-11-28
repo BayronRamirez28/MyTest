@@ -24,13 +24,13 @@
                         <mat-form-field class="full-width" appearance="outline">
                             <mat-label>Categoria</mat-label>
                             <mat-select [(ngModel)] = "producto.category" name="categoria">
-                                <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.name }}</mat-option>
+                                <mat-option *ngFor="let categoria of categorias" [value]="categoria">{{ categoria.name }}</mat-option>
                             </mat-select>
                         </mat-form-field>
                         <mat-form-field class="full-width" appearance="outline">
                             <mat-label>Proveedor</mat-label>
                             <mat-select [(ngModel)] = "producto.supplier" name="proveedor">
-                                <mat-option *ngFor="let proveedor of proveedores" [value]="proveedor.id">{{ proveedor.name }}</mat-option>
+                                <mat-option *ngFor="let proveedor of proveedores" [value]="proveedor">{{ proveedor.name }}</mat-option>
                             </mat-select>
                         </mat-form-field>
                         <div clas="container text-center mt10">

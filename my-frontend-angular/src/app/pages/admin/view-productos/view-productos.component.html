@@ -3,40 +3,59 @@
         <h1>Listado de productos</h1>
     </div>
     <mat-card-content>
-        <div class="bootstrap-wrapper">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-10 offset-md-1">
-                        <table class="table text-center">
-                            <thead>
-                                <th >Id</th>
-                                <th>Nombre</th>
-                                <th>Detalle</th>
-                                <th>Cantidad</th>
-                                <th>Precio venta</th>
-                                <th>Estado</th>
-                                <th>Categoria</th>
-                                <th>Proveedor</th>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let producto of productos">
-                                    <td>{{ producto.id }}</td>
-                                    <td>{{ producto.name }}</td>
-                                    <td>{{ producto.detail }}</td>
-                                    <td>{{ producto.quantity }}</td>
-                                    <td>{{ producto.sale_price }}</td>
-                                    <td>{{ producto.estate }}</td>
-                                    <td>{{ producto.category.name}}</td>
-                                    <td>{{ producto.supplier.name}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <mat-card-actions class="text-center">
-            <button routerLink="" mat-raised-button color="primary">Agregar producto</button>
-        </mat-card-actions>
+        <button routerLink="['add-producto']" mat-raised-button color="primary">Agregar producto</button>
+        <table mat-table [dataSource]="productos" class="mat-elevation-z8">
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> Id </th>
+                <td mat-cell *matCellDef="let producto"> {{producto.id}} </td>
+            </ng-container>
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                <td mat-cell *matCellDef="let producto"> {{producto.name}} </td>
+            </ng-container>
+            <ng-container matColumnDef="detail">
+                <th mat-header-cell *matHeaderCellDef> Detalle </th>
+                <td mat-cell *matCellDef="let producto"> {{producto.detail}} </td>
+            </ng-container>
+            <ng-container matColumnDef="quantity">
+                <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+                <td mat-cell *matCellDef="let producto"> {{producto.quantity}} </td>
+            </ng-container>
+            <ng-container matColumnDef="sale_price">
+                <th mat-header-cell *matHeaderCellDef> Precio Venta </th>
+                <td mat-cell *matCellDef="let producto"> {{producto.sale_price}} </td>
+            </ng-container>
+            <ng-container matColumnDef="estate">
+                <th mat-header-cell *matHeaderCellDef> Estado </th>
+                <td mat-cell *matCellDef="let producto"> {{producto.estate}} </td>
+            </ng-container>
+            <ng-container matColumnDef="category">
+                <th mat-header-cell *matHeaderCellDef> Categoria </th>
+                <td mat-cell *matCellDef="let producto"> {{producto.category.name}} </td>
+            </ng-container>
+            <ng-container matColumnDef="supplier">
+                <th mat-header-cell *matHeaderCellDef> Proveedor </th>
+                <td mat-cell *matCellDef="let producto"> {{producto.supplier.name}} </td>
+            </ng-container>
+            <ng-container matColumnDef="borrar">
+                <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+                <td mat-cell *matCellDef="let j = index;">
+                  <button mat-raised-button color="warn" focusable="false" >
+                    Eliminar
+                  </button>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="editar">
+                <th mat-header-cell *matHeaderCellDef> Editar </th>
+                <td mat-cell *matCellDef="let j = index;">
+                  <button mat-raised-button color="success" focusable="false" >
+                    Editar
+                  </button>
+                </td>
+              </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columndefs"></tr>
+            <tr mat-row *matRowDef="let row; columns: columndefs;"></tr>
+        </table>
     </mat-card-content>
 </mat-card>

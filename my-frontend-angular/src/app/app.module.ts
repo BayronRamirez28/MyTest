@@ -28,6 +28,7 @@ import { SidebarComponent } from './pages/admin/sidebar/sidebar.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 import { ViewProductosComponent } from './pages/admin/view-productos/view-productos.component';
 import { AddProductoComponent } from './pages/admin/add-producto/add-producto.component'; 
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { AddProductoComponent } from './pages/admin/add-producto/add-producto.co
     MatCardModule,
     MatToolbarModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatTableModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

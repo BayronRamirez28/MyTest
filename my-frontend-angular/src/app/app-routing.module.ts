@@ -48,6 +48,10 @@ const routes: Routes = [
     {
       path: 'add-producto',
       component: AddProductoComponent
+    },
+    {
+      path: 'productos/:id',
+      component: AddProductoComponent
     }
   ]
   },

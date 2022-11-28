@@ -69,8 +69,9 @@ public class Product implements Serializable{
 	private List<SaleDetail> product_saledetail;
 
 	public Product() {
-		super();
 	}
+
+	
 
 	public Product(int id, String name, int quantity, float sale_price, String estate, String detail,
 			int minimun_quantity, String image, Supplier supplier, Category category) {
@@ -86,6 +87,8 @@ public class Product implements Serializable{
 		this.supplier = supplier;
 		this.category = category;
 	}
+
+
 
 	public int getId() {
 		return id;
@@ -171,16 +174,8 @@ public class Product implements Serializable{
 		return serialVersionUID;
 	}
 
-	@Override
-	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", quantity=" + quantity + ", sale_price=" + sale_price
-				+ ", estate=" + estate + ", detail=" + detail + ", minimun_quantity=" + minimun_quantity + ", image="
-				+ image + ", supplier=" + supplier + ", category=" + category + "]";
-	}
+	
 
-	
-	
-	
 
 	
 	

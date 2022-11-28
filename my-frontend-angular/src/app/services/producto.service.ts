@@ -26,4 +26,12 @@ export class ProductoService {
     return  this.http.post(`${baseUrl}/productos/create`,producto);
   }
 
+  public findId(id: number){
+    return this.http.get(`${baseUrl}/`+id);
+  }
+
+  public actualizarProduct(producto:Producto){
+    return this.http.put(`${baseUrl}/productos/update`+producto.id, producto);
+  }
+
 }
