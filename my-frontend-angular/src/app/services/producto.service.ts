@@ -1,37 +1,41 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import baseUrl from './helper';
 import { Producto } from '../model/producto';
+import { Observable } from 'rxjs';
+import { Categoria } from '../model/categoria';
+import { Proveedor } from '../model/proveedores';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductoService {
 
-  constructor(private http:HttpClient) { }
+  baseURL = 'http://localhost:8083/productos'
 
-  public listarProductos(){
-    return this.http.get(`${baseUrl}/productos/all`);
+  constructor(private httpClient:HttpClient) { }
+
+  public listarProductos(): Observable<Producto[]>{
+    return this.httpClient.get<Producto[]>(`${this.baseURL}/all`);
   }
 
-  public listarCategorias(){
-    return this.http.get(`${baseUrl}/productos/categorias`);
+  public listarCategorias(): Observable<Categoria[]>{
+    return this.httpClient.get<Categoria[]>(`${this.baseURL}/categorias`);
   }
 
-  public listarProveedores(){
-    return this.http.get(`${baseUrl}/productos/proveedores`);
+  public listarProveedores(): Observable<Proveedor[]>{
+    return this.httpClient.get<Proveedor[]>(`${this.baseURL}/proveedores`);
   }
 
-  public crearProducto(producto:Producto){
-    return  this.http.post(`${baseUrl}/productos/create`,producto);
+  public crearProducto(producto:Producto): Observable<any>{
+    return  this.httpClient.post<any>(`${this.baseURL}/create`,producto);
   }
 
-  public findId(id: number){
-    return this.http.get(`${baseUrl}/`+id);
+  public findId(id: number): Observable<Producto>{
+    return this.httpClient.get<Producto>(`${this.baseURL}/${id}`);
   }
 
-  public actualizarProduct(producto:Producto){
-    return this.http.put(`${baseUrl}/productos/update`+producto.id, producto);
+  public actualizarProduct(id: number, producto:Producto): Observable<any>{
+    return this.httpClient.put(`${this.baseURL}/update/${id}`, producto);
   }
 
 }

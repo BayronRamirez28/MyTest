@@ -109,13 +109,6 @@ public class Batch implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
-	@Override
-	public String toString() {
-		return "Batch [id=" + id + ", quantity=" + quantity + ", price_shopping=" + price_shopping
-				+ ", registration_date=" + registration_date + ", expiration_date=" + expiration_date + ", product="
-				+ product + "]";
-	}
 	
 	
 }

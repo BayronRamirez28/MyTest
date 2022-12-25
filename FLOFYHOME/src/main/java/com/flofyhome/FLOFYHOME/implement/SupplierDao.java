@@ -23,18 +23,18 @@ public class SupplierDao implements ISupplier{
 
 	@Override
 	public Supplier create(Supplier supplier) {
-		return this.supplierRepository.save(supplier);
+		return supplierRepository.save(supplier);
 		
 	}
 
 	@Override
 	public Supplier update(Supplier supplier) {
-		return this.supplierRepository.save(supplier);
+		return supplierRepository.save(supplier);
 		
 	}
 
 	@Override
 	public Supplier findId(int id) {
-		return this.supplierRepository.findById(id).get();
+		return supplierRepository.findById(id).get();
 	}
 }

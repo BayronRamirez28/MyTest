@@ -23,18 +23,18 @@ public class CategoryDao implements ICategory{
 
 	@Override
 	public Category create(Category category) {
-		return this.categoryRepository.save(category);
+		return categoryRepository.save(category);
 		
 	}
 
 	@Override
 	public Category update(Category category) {
-		return this.categoryRepository.save(category);
+		return categoryRepository.save(category);
 		
 	}
 
 	@Override
 	public Category findId(int id) {
-		return this.categoryRepository.findById(id).get();
+		return categoryRepository.findById(id).get();
 	}
 }

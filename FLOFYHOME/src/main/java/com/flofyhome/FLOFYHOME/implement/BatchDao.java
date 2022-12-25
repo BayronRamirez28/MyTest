@@ -1,5 +1,6 @@
 package com.flofyhome.FLOFYHOME.implement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,26 +17,23 @@ public class BatchDao implements IBatch{
 	private BatchRepository batchRepository;
 	
 	@Override
-	public List<Batch> findAll(String keyWord){
-		if(keyWord != null) {
-			return this.batchRepository.findAll(keyWord);
-		}
-		return this.batchRepository.findAll();
+	public List<Batch> findAll(){
+		return new ArrayList<>(batchRepository.findAll());
 	}
 	
 	@Override
-	public void create(Batch batch) {
-		this.batchRepository.save(batch);
+	public Batch create(Batch batch) {
+		return batchRepository.save(batch);
 	}
 	
 	@Override
-	public void update(Batch batch) {
-		this.batchRepository.save(batch);
+	public Batch update(Batch batch) {
+		return batchRepository.save(batch);
 	}
 	
 	@Override
 	public Batch findId(int id) {
-		return this.batchRepository.getOne(id);
+		return batchRepository.findById(id).get();
 	}
 	
 }

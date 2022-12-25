@@ -6,11 +6,11 @@ import com.flofyhome.FLOFYHOME.model.Batch;
 
 public interface IBatch {
 
-	public List<Batch> findAll(String keyWord);
+	public List<Batch> findAll();
 	
-	public void create(Batch batch);
+	public Batch create(Batch batch);
 	
-	public void update (Batch batch);
+	public Batch update (Batch batch);
 	
 	public Batch findId(int id);
 }

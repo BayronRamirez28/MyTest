@@ -2,12 +2,10 @@ package com.flofyhome.FLOFYHOME.controller;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.flofyhome.FLOFYHOME.implement.SupplierDao;
-import com.flofyhome.FLOFYHOME.model.Category;
 import com.flofyhome.FLOFYHOME.model.Supplier;
 
 @RestController
@@ -30,24 +27,40 @@ public class SupplierController {
 	private SupplierDao supplierDao;
 
 	@GetMapping("/all")
-	public ResponseEntity<?> findAll(){
-		return ResponseEntity.ok(supplierDao.findAll());
+	public ResponseEntity<List<Supplier>> findAll(){
+		return new ResponseEntity<>(supplierDao.findAll(), HttpStatus.OK);
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<Supplier> findId(@PathVariable Integer id){
+		return new ResponseEntity<>(supplierDao.findId(id), HttpStatus.OK);
 	}
 	
 	@PostMapping("/create")
 	public ResponseEntity<Supplier> create(@RequestBody Supplier supplier){
-		return ResponseEntity.ok(supplierDao.create(supplier));
+		return new ResponseEntity<>(supplierDao.create(supplier), HttpStatus.CREATED);
 	}
 	
-	@PutMapping("/update")
-	public ResponseEntity<Supplier> update(@RequestBody Supplier supplier){
-		return ResponseEntity.ok(supplierDao.update(supplier));
+	@PutMapping("/update/{id}")
+	public ResponseEntity<Supplier> update(@PathVariable Integer id,@RequestBody Supplier supplier){
+		Supplier supplierFound = supplierDao.findId(id);
+		
+		if(supplierFound == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+		try {
+			supplierFound.setName(supplier.getName());
+			supplierFound.setEmail(supplier.getEmail());
+			supplierFound.setTelephone(supplier.getTelephone());
+			
+			return new ResponseEntity<>(supplierDao.update(supplierFound), HttpStatus.CREATED);
+		} catch (DataAccessException e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 	
-	@GetMapping("/{id}")
-	public Supplier findId(@PathVariable("id") int id) {
-		return supplierDao.findId(id);
-	}
+	
 		
 	
 }

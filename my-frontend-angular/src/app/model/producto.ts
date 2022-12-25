@@ -1,8 +1,8 @@
 import { Categoria } from "./categoria";
 import { Proveedor } from "./proveedores";
-export class Producto{
+export class  Producto{
     id!:number;
-    name!:String;
+    name!: String;
     quantity!:number;
     sale_price!:number;
     estate!:String;
@@ -10,4 +10,5 @@ export class Producto{
     minimun_quantity!:number;
     category!: Categoria;
     supplier!: Proveedor;
+
 }

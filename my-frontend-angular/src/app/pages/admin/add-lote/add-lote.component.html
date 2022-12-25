@@ -1,0 +1,43 @@
+<mat-card>
+    <h1>Agregar nuevo lote</h1>
+    <mat-card-content>
+        <div class="bootstrap-wrapper">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <form (ngSubmit) = "crearLote()">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Producto</mat-label>
+                            <mat-select [(ngModel)] = "lote.product" name="producto">
+                                <mat-option *ngFor="let producto of productos" [value]="producto">{{ producto.name }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="w100" appearance="outline">
+                            <mat-label>Cantidad</mat-label>
+                            <input required type="number" name="quantity" [(ngModel)]="lote.quantity" matInput placeholder="Digite la cantidad del lote">
+                        </mat-form-field>
+                        <mat-form-field class="w100" appearance="outline">
+                            <mat-label>Precio Compra</mat-label>
+                            <input required [(ngModel)] = "lote.price_shopping" name="price_shopping" matInput type="number" placeholder="Digite el valor de compra del producto">
+                        </mat-form-field>
+                        <mat-form-field class="w100" appearance="outline">
+                            <mat-label>Fecha registro</mat-label>
+                            <input required [(ngModel)] = "Date1 " [value]="" name="registration_date" matInput type="date" id="LocalDate">
+                        </mat-form-field>
+                        <mat-form-field class="w100" appearance="outline">
+                            <mat-label>Fecha Vencimiento</mat-label>
+                            <input required [(ngModel)] = "lote.expiration_date" name="expiration_date" matInput type="date">
+                        </mat-form-field>
+                        <div clas="container text-center mt10">
+                            <button type="submit" mat-raised-button color="primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+fecha actual: {{ Date1 | date: "yyyy, mm, dd" }}
+
+    
+
+
